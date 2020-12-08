@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h2>Конвертор</h2>
+<form th:action="@{/main}" th:method="post">
+    <table>
+        <tr>
+            <td width="400">
+                <div>
+                    <label for="from">Из какой валюты: </label>
+                    <select name="currencyName1" id="from">
+                        <option th:each="va : ${model}" th:text="${va.charCode} + ' ' + '(' + ${va.name} + ')'"/>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <label for="to">В какую валюту: </label>
+                    <select name="currencyName2" id="to">
+                        <option th:each="sa : ${model}" th:text="${sa.charCode} + ' ' + '(' + ${sa.name} + ')'"/>
+                    </select>
+                </div>
+            </td>
+        </tr>
+    </table> <br/>
+
+    <table>
+        <tr>
+            <td>
+                <label for="val">Колличество переводимых средств: </label>
+                <input type="text" name="amountCurrency" id="val"/>
+            </td>
+        </tr>
+        <tr>
+            <td height="50" align="center">
+                <button type="submit">Конвертировать</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<table>
+    <tr>
+        <td>
+            <a href="/history">История</a>
+        </td>
+    </tr>
+</table> <br/> <hr/> <br/>
+
+<form th:method="post" th:action="@{/logout}">
+    <input type="submit" value="Выйти">
+</form>
+</body>
+</html>
